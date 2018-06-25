@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\v1;
 use App\Player;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class PlayerController extends Controller
 {
@@ -24,18 +25,33 @@ class PlayerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'age' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+            'market_value' => 'required',
+            'post' => 'required|array'
+        ]);
+
+        if ($validator->fails())
+            return response()->json(['errors' => $validator->errors(), 'status_code' => 400], 400);
+
+        $player = Player::create($request->all());
+
+        return response()->json(['message' => 'Player Added Successfully', 'data' => $player, 'status_code' => 201], 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -46,8 +62,8 @@ class PlayerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -58,7 +74,7 @@ class PlayerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

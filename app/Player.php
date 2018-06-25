@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Player extends Model
 {
-    protected $fillable = ['first_name', 'last_name', 'age', 'weight', 'height', 'market_value'];
+    protected $fillable = ['first_name', 'last_name', 'age', 'weight', 'height', 'market_value', 'post'];
 
     protected $casts = [
         'post' => 'array'

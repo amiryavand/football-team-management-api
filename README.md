@@ -20,14 +20,14 @@ Simple laravel api for football team management
 ### How To Run
 
 1. Download or Pull project
-2. go to project folder and run: ``` composer install```
+2. go to project folder and run: ``` composer install ```
 3. set your database info in **.env** file
 4. to seed sample data run: ``` php artisan migration:refresh --seed ```
 5. to up project run: ``` php artisan serve ```
 
 ### User Info for Authentication
 
-> username:admin@example.com - password: secret
+> username: admin@example.com - password: secret
 
 ### TODO
 

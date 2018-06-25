@@ -29,7 +29,18 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'type' => 'required',
+            'rank' => 'required'
+        ]);
+
+        if ($validator->fails())
+            return response()->json(['errors' => $validator->errors(), 'status_code' => 400], 400);
+
+        $team = Team::create($request->all());
+
+        return response()->json(['message' => 'Team Added Successfully', 'data' => $team, 'status_code' => 201], 201);
     }
 
     /**
