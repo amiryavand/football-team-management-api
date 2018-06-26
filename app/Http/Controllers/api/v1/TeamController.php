@@ -17,8 +17,9 @@ class TeamController extends Controller
     public function index()
     {
         $count = \request()->has('count') ? \request('count') : 10;
-        $orderBy = \request()->has('order_by') ? \request('order_by') : 'created_at';
+        $orderBy = \request()->has('order_by') && in_array(\request('order_by'), ['name', 'rank', 'type']) ? \request('order_by') : 'created_at';
         $sort = \request()->has('sort') ? \request('sort') : 'desc';
+
         return Team::orderBy($orderBy, $sort)->with('players')->paginate($count);
     }
 

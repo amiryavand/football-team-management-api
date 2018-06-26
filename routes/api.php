@@ -18,6 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::namespace('api\v1')->prefix('v1')->group(function () {
-    Route::apiResource('players', 'PlayerController');
-    Route::apiResource('teams', 'TeamController');
+    Route::post('/register', 'UserController@register');
+    Route::post('/login', 'UserController@login');
+    Route::apiResource('players', 'PlayerController')->middleware('auth:api');
+    Route::apiResource('teams', 'TeamController')->middleware('auth:api');
 });

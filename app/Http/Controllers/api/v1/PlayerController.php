@@ -17,8 +17,9 @@ class PlayerController extends Controller
     public function index()
     {
         $count = \request()->has('count') ? \request('count') : 10;
-        $orderBy = \request()->has('order_by') ? \request('order_by') : 'created_at';
+        $orderBy = \request()->has('order_by') && in_array(\request('order_by'), ['age', 'weight', 'height', 'market_value']) ? \request('order_by') : 'created_at';
         $sort = \request()->has('sort') ? \request('sort') : 'desc';
+
         return Player::orderBy($orderBy, $sort)->with(['teams' => function ($query) {
             $query->select('teams.id', 'teams.name', 'teams.type')->get();
         }])->paginate($count);
