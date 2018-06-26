@@ -29,7 +29,7 @@ Simple laravel api for football team management
 ### How to Authenticate
 
 To access api endpoints you should login first to get an **access_token** with login route. then you should send this token as header parameter with every request.
-- jquery example:
+##### jQuery example:
   ```
   var settings = {
     "async": true,
