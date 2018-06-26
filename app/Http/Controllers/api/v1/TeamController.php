@@ -16,11 +16,11 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $count = \request()->has('count') ? \request('count') : 10;
+        $limit = \request()->has('limit') ? \request('limit') : 10;
         $orderBy = \request()->has('order_by') && in_array(\request('order_by'), ['name', 'rank', 'type']) ? \request('order_by') : 'created_at';
         $sort = \request()->has('sort') ? \request('sort') : 'desc';
 
-        return Team::orderBy($orderBy, $sort)->with('players')->paginate($count);
+        return Team::orderBy($orderBy, $sort)->with('players')->paginate($limit);
     }
 
     /**

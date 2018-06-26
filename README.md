@@ -10,7 +10,7 @@ Simple laravel api for football team management
 
 ### Query Parameters
 
-- **count** = limit results to this number, default = 10
+- **limit** = limit results to this number, default = 10
 - **order_by** = order results to this field, default = created_at
   - example for players endpoint: market_value, height, age ...
 - **sort** = set direction of sort, default = desc
@@ -23,9 +23,10 @@ Simple laravel api for football team management
 2. go to project folder and run: ``` composer install ```
 3. set your database info in **.env** file
 4. to seed sample data run: ``` php artisan migration:refresh --seed ```
+5. to create passport keys run: ``` php artisan passport:install --force```
 5. to up project run: ``` php artisan serve ```
 
-### User Info for Authentication
+### Example User Info for Authentication
 
 > username: admin@example.com - password: secret
 
@@ -34,4 +35,4 @@ Simple laravel api for football team management
 - [ ] Add Nationality to Players.
 - [ ] Add Ability Model for Players.
 - [ ] Add Managers for Teams.
-- [ ] Add Leages and Championships to Teams.
+- [ ] Add Leages and Championship Endpoints.
