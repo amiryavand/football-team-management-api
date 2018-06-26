@@ -26,6 +26,25 @@ Simple laravel api for football team management
 5. to create passport keys run: ``` php artisan passport:install --force```
 5. to up project run: ``` php artisan serve ```
 
+### How to Authenticate
+
+To access api endpoints you should login first to get an **access_token** with login route. then you should send this token as header parameter with every request.
+- jquery example:
+  - ```var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://your-api.com/api-endpoint",
+    "method": "GET",
+    "headers": {
+      "Content-Type": "application/json",
+      "Auth": "Bearer {{access_token}}"
+    },
+    "data": {}
+  }
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });``` 
+
 ### Example User Info for Authentication
 
 > username: admin@example.com - password: secret
