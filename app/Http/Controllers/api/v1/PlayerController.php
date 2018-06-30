@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Player;
+use App\Team;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -75,6 +76,23 @@ class PlayerController extends Controller
     {
         $player->delete();
         return response()->json([], 204);
+    }
+
+    public function addPlayerToTeam(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'player_id' => 'required',
+            'team_id' => 'required'
+        ]);
+        if ($validator->fails())
+            return response()->json(['errors' => $validator->errors(), 'status_code' => 400], 400);
+
+        $player = Player::whereId($request->player_id)->first();
+        $team = Team::whereId($request->team_id)->first();
+
+        $team->players()->attach($player);
+
+        return response()->json(['message' => 'Player Added To Team Successfully', 'status_code' => 200], 200);
     }
 
     /**

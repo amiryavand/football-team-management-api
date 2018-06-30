@@ -22,4 +22,5 @@ Route::namespace('api\v1')->prefix('v1')->group(function () {
     Route::post('/login', 'UserController@login');
     Route::apiResource('players', 'PlayerController')->middleware('auth:api');
     Route::apiResource('teams', 'TeamController')->middleware('auth:api');
+    Route::post('/addPlayerToTeam', 'PlayerController@addPlayerToTeam')->middleware('auth:api');
 });
